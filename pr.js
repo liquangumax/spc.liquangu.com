@@ -192,12 +192,13 @@ async function buildPaymentRequest(windowLocalStorageIdentifier) {
       displayName: 'Max Pay',
       icon: 'https://spc.liquangu.com/bobpaycc.png',
     };
+    const credentialId = window.localStorage.getItem(windowLocalStorageIdentifier);
+    info("Credential ID (copy this into the input box): " + credentialId);
     const supportedInstruments = [{
       supportedMethods: 'secure-payment-confirmation',
       data: {
         action: 'authenticate',
-        credentialIds: [base64ToArray(window.localStorage.getItem(
-          windowLocalStorageIdentifier))],
+        credentialIds: [base64ToArray(credentialId)],
         instrument: updatedInstrument,
         networkData: challenge,
         challenge,
